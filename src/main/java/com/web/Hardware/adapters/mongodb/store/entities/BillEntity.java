@@ -5,10 +5,11 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
+//import reactor.core.publisher.Flux;
+//import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
@@ -21,13 +22,13 @@ public class BillEntity {
 
     private AtomicLong incrementable = new AtomicLong(0);
     private LocalDateTime fecha;
-    private Flux<ProductEntity> productos;
+    private ArrayList<ProductEntity> productos;
 
     @DBRef
-    private Mono<EmployeeEntity> nombreVendedor;
+    private EmployeeEntity nombreVendedor;
 
     @DBRef
-    private Mono<ClientEntity> nombreCliente;
+    private ClientEntity nombreCliente;
     private Double totalAPagar;
 
     public BillEntity() {
@@ -69,27 +70,27 @@ public class BillEntity {
         this.fecha = fecha;
     }
 
-    public Flux<ProductEntity> getProductos() {
+    public ArrayList<ProductEntity> getProductos() {
         return productos;
     }
 
-    public void setProductos(Flux<ProductEntity> productos) {
+    public void setProductos(ArrayList<ProductEntity> productos) {
         this.productos = productos;
     }
 
-    public Mono<EmployeeEntity> getNombreVendedor() {
+    public EmployeeEntity getNombreVendedor() {
         return nombreVendedor;
     }
 
-    public void setNombreVendedor(Mono<EmployeeEntity> nombreVendedor) {
+    public void setNombreVendedor(EmployeeEntity nombreVendedor) {
         this.nombreVendedor = nombreVendedor;
     }
 
-    public Mono<ClientEntity> getNombreCliente() {
+    public ClientEntity getNombreCliente() {
         return nombreCliente;
     }
 
-    public void setNombreCliente(Mono<ClientEntity> nombreCliente) {
+    public void setNombreCliente(ClientEntity nombreCliente) {
         this.nombreCliente = nombreCliente;
     }
 

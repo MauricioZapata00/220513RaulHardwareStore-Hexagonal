@@ -5,10 +5,11 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
+//import reactor.core.publisher.Flux;
+//import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -21,9 +22,9 @@ public class TicketEntity {
     private LocalDateTime fecha;
 
     @DBRef
-    private Mono<SupplierEntity> proveedor;
+    private SupplierEntity proveedor;
 
-    private Flux<ProductEntity> productosAIngresar;
+    private ArrayList<ProductEntity> productosAIngresar;
 
     public TicketEntity() {
         //empty due to framework
@@ -56,19 +57,19 @@ public class TicketEntity {
         this.fecha = fecha;
     }
 
-    public Mono<SupplierEntity> getProveedor() {
+    public SupplierEntity getProveedor() {
         return proveedor;
     }
 
-    public void setProveedor(Mono<SupplierEntity> proveedor) {
+    public void setProveedor(SupplierEntity proveedor) {
         this.proveedor = proveedor;
     }
 
-    public Flux<ProductEntity> getProductosAIngresar() {
+    public ArrayList<ProductEntity> getProductosAIngresar() {
         return productosAIngresar;
     }
 
-    public void setProductosAIngresar(Flux<ProductEntity> productosAIngresar) {
+    public void setProductosAIngresar(ArrayList<ProductEntity> productosAIngresar) {
         this.productosAIngresar = productosAIngresar;
     }
 

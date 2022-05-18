@@ -4,18 +4,19 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class Ticket {
 
     private LocalDateTime fecha;
-    private Mono<Supplier> proveedor;
-    private Flux<Product> productosAIngresar;
+    private Supplier proveedor;
+    private ArrayList<Product> productosAIngresar;
 
     public Ticket() {
         //empty due to framework
     }
 
-    public Ticket(Mono<Supplier> proveedor, Flux<Product> productosAIngresar) {
+    public Ticket(Supplier proveedor, ArrayList<Product> productosAIngresar) {
         this.fecha = LocalDateTime.now();
         this.proveedor = proveedor;
         this.productosAIngresar = productosAIngresar;
@@ -29,19 +30,19 @@ public class Ticket {
         this.fecha = fecha;
     }
 
-    public Mono<Supplier> getProveedor() {
+    public Supplier getProveedor() {
         return proveedor;
     }
 
-    public void setProveedor(Mono<Supplier> proveedor) {
+    public void setProveedor(Supplier proveedor) {
         this.proveedor = proveedor;
     }
 
-    public Flux<Product> getProductosAIngresar() {
+    public ArrayList<Product> getProductosAIngresar() {
         return productosAIngresar;
     }
 
-    public void setProductosAIngresar(Flux<Product> productosAIngresar) {
+    public void setProductosAIngresar(ArrayList<Product> productosAIngresar) {
         this.productosAIngresar = productosAIngresar;
     }
 

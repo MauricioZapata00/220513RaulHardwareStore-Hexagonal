@@ -37,6 +37,7 @@ public class StoreSeederService {
     }
 
     public void seedDatabase(){
+        /*
         LogManager.getLogger(this.getClass()).info("-----------Store Initial Load-----------\n");
         LogManager.getLogger(this.getClass()).info("-----------Loading Seed Clients-----------");
         List<ClientEntity> nonReactiveStreamOfClients = new ArrayList<>();
@@ -48,6 +49,8 @@ public class StoreSeederService {
         LogManager.getLogger(this.getClass()).info("ArrayList: " + nonReactiveStreamOfClients);
         this.clientRepository.saveAll(nonReactiveStreamOfClients).subscribe();
 
+         */
+
         /*
         this.clientRepository.save(nonReactiveStreamOfClients.get(0)).subscribe();
         this.clientRepository.save(nonReactiveStreamOfClients.get(1)).subscribe();
@@ -56,6 +59,8 @@ public class StoreSeederService {
             LogManager.getLogger(this.getClass()).info("-----------Saving Seed Clients-----------");
         });
         */
+
+        /*
         LogManager.getLogger(this.getClass()).info("-----------Seed Clients Successfully Loaded-----------\n");
 
         LogManager.getLogger(this.getClass()).info("-------------------------------------------------");
@@ -98,6 +103,9 @@ public class StoreSeederService {
 
         LogManager.getLogger(this.getClass()).info("-----------Loading Seed Bills-----------");
         List<BillEntity> nonReactiveStreamOfBills = new ArrayList<>();
+
+         */
+
         /*
         nonReactiveStreamOfBills.add(new BillEntity(new Bill(
                 this.productRepository.findAll()
@@ -118,6 +126,8 @@ public class StoreSeederService {
                         .map(clientEntity -> clientEntity.toClient()), Double.valueOf(60000)
         )));
          */
+
+        /*
         nonReactiveStreamOfBills.add(new BillEntity(new Bill(
                 Flux.just(nonReactiveStreamOfProduct.get(1).toProduct(),
                         nonReactiveStreamOfProduct.get(2).toProduct()),
@@ -136,6 +146,9 @@ public class StoreSeederService {
 
         LogManager.getLogger(this.getClass()).info("-----------Loading Seed Tickets-----------");
         List<TicketEntity> nonReactiveStreamOfTickets = new ArrayList<>();
+
+         */
+
         /*
         nonReactiveStreamOfTickets.add(new TicketEntity(new Ticket(
                 this.supplierRepository.findById(nonReactiveStreamOfSuppliers.get(3).getId())//Supplier Vinicryl
@@ -145,9 +158,105 @@ public class StoreSeederService {
                         .map(productEntity -> productEntity.toProduct())
         )));
          */
+
+        /*
         nonReactiveStreamOfTickets.add(new TicketEntity(new Ticket(
                 Mono.just(nonReactiveStreamOfSuppliers.get(3).toSupplier()),
                 Flux.just(nonReactiveStreamOfProduct.get(0).toProduct())
+        )));
+        this.ticketRepository.saveAll(nonReactiveStreamOfTickets).subscribe(result ->{
+            LogManager.getLogger(this.getClass()).info("-----------Saving Tickets Seed-----------");
+        });
+        //LogManager.getLogger(this.getClass()).info("Tickets saved: " + tickets);
+        LogManager.getLogger(this.getClass()).info("-----------Tickets Seed Successfully Loaded-----------\n");
+
+        LogManager.getLogger(this.getClass()).info("-----------Store Successfully Loaded With Seeds-----------\n");
+
+         */
+        LogManager.getLogger(this.getClass()).info("-----------Store Initial Load-----------\n");
+        LogManager.getLogger(this.getClass()).info("-----------Loading Seed Clients-----------");
+        List<ClientEntity> nonReactiveStreamOfClients = new ArrayList<>();
+        nonReactiveStreamOfClients.add(new ClientEntity(new Client("Juana Gaviria", "3147210641", "1143598881")));
+        nonReactiveStreamOfClients.add(new ClientEntity(new Client("Paola Saldarriaga", "3015712596", "1071523698")));
+        nonReactiveStreamOfClients.add(new ClientEntity(new Client("Sergio Suarez", "3019232741", "1103851469")));
+        nonReactiveStreamOfClients.add(new ClientEntity(new Client("Jaime Isaza", "3185244440", "82954103")));
+        this.clientRepository.saveAll(nonReactiveStreamOfClients).subscribe(result ->{
+            LogManager.getLogger(this.getClass()).info("-----------Saving Seed Clients-----------");
+        });
+        LogManager.getLogger(this.getClass()).info("-----------Seed Clients Successfully Loaded-----------\n");
+
+        LogManager.getLogger(this.getClass()).info("-------------------------------------------------");
+
+        LogManager.getLogger(this.getClass()).info("-----------Loading Seed Employees-----------");
+        List<EmployeeEntity> nonReactiveStreamOfEmployees = new ArrayList<>();
+        nonReactiveStreamOfEmployees.add(new EmployeeEntity(new Employee("Tatiana López", "3174270927", "1152963541")));
+        this.employeeRepository.saveAll(nonReactiveStreamOfEmployees).subscribe(result ->{
+            LogManager.getLogger(this.getClass()).info("-----------Saving Seed Employees-----------");
+        });
+        LogManager.getLogger(this.getClass()).info("-----------Seed Employees Successfully Loaded-----------\n");
+
+        LogManager.getLogger(this.getClass()).info("-------------------------------------------------");
+
+        LogManager.getLogger(this.getClass()).info("-----------Loading Seed Products-----------");
+        List<ProductEntity> nonReactiveStreamOfProduct = new ArrayList<>();
+        nonReactiveStreamOfProduct.add(new ProductEntity(new Product("Pintura Verde", 5, Double.valueOf(45000))));
+        nonReactiveStreamOfProduct.add(new ProductEntity(new Product("Pintura Blanca", 7, Double.valueOf(45000))));
+        nonReactiveStreamOfProduct.add(new ProductEntity(new Product("Pintura Blanca", 2, Double.valueOf(47000))));
+        nonReactiveStreamOfProduct.add(new ProductEntity(new Product("Martillo", 10, Double.valueOf(20000))));
+        this.productRepository.saveAll(nonReactiveStreamOfProduct).subscribe(result ->{
+            LogManager.getLogger(this.getClass()).info("-----------Saving Products Seed-----------");
+        });
+        LogManager.getLogger(this.getClass()).info("-----------Products Seed Successfully Loaded-----------\n");
+
+        LogManager.getLogger(this.getClass()).info("-------------------------------------------------");
+
+        LogManager.getLogger(this.getClass()).info("-----------Loading Seed Suppliers-----------");
+        List<SupplierEntity> nonReactiveStreamOfSuppliers = new ArrayList<>();
+        nonReactiveStreamOfSuppliers.add(new SupplierEntity(new Supplier("ATEK Holding S.A.S", "3245698215", "14785296")));
+        nonReactiveStreamOfSuppliers.add(new SupplierEntity(new Supplier("Home Center", "3147215698", "701506489")));
+        nonReactiveStreamOfSuppliers.add(new SupplierEntity(new Supplier("STANLEY Tools", "3177240923", "5042387453")));
+        nonReactiveStreamOfSuppliers.add(new SupplierEntity(new Supplier("Vinicryl", "3027960103", "941574326")));
+        this.supplierRepository.saveAll(nonReactiveStreamOfSuppliers).subscribe(result ->{
+            LogManager.getLogger(this.getClass()).info("-----------Saving Suppliers Seed-----------");
+        });
+
+        LogManager.getLogger(this.getClass()).info("-----------Suppliers Seed Successfully Loaded-----------\n");
+
+        LogManager.getLogger(this.getClass()).info("-------------------------------------------------");
+
+        LogManager.getLogger(this.getClass()).info("-----------Loading Seed Bills-----------");
+        List<BillEntity> nonReactiveStreamOfBills = new ArrayList<>();
+        List<Product> currBillsProduct = new ArrayList<>();
+        currBillsProduct.add(nonReactiveStreamOfProduct.get(1).toProduct());
+        currBillsProduct.add(nonReactiveStreamOfProduct.get(2).toProduct());
+        nonReactiveStreamOfBills.add(new BillEntity(new Bill(
+                (ArrayList<Product>) currBillsProduct,
+                nonReactiveStreamOfEmployees.get(0).toEmployee(),
+                nonReactiveStreamOfClients.get(2).toClient(),
+                Double.valueOf(85500)
+        )));
+        currBillsProduct.clear();
+        currBillsProduct.add(nonReactiveStreamOfProduct.get(3).toProduct());
+        nonReactiveStreamOfBills.add(new BillEntity(new Bill(
+                (ArrayList<Product>) currBillsProduct,
+                nonReactiveStreamOfEmployees.get(0).toEmployee(),
+                nonReactiveStreamOfClients.get(3).toClient(),
+                Double.valueOf(60000)
+        )));
+        this.billRepository.saveAll(nonReactiveStreamOfBills).subscribe(result ->{
+            LogManager.getLogger(this.getClass()).info("-----------Saving Seed Bill-----------");
+        });
+        LogManager.getLogger(this.getClass()).info("-----------Seed Bill Successfully Loaded-----------\n");
+
+        LogManager.getLogger(this.getClass()).info("-------------------------------------------------");
+
+        LogManager.getLogger(this.getClass()).info("-----------Loading Seed Tickets-----------");
+        List<TicketEntity> nonReactiveStreamOfTickets = new ArrayList<>();
+        currBillsProduct.clear();
+        currBillsProduct.add(nonReactiveStreamOfProduct.get(0).toProduct());
+        nonReactiveStreamOfTickets.add(new TicketEntity(new Ticket(
+                nonReactiveStreamOfSuppliers.get(3).toSupplier(),
+                (ArrayList<Product>) currBillsProduct
         )));
         this.ticketRepository.saveAll(nonReactiveStreamOfTickets).subscribe(result ->{
             LogManager.getLogger(this.getClass()).info("-----------Saving Tickets Seed-----------");

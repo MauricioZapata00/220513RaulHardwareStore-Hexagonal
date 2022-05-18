@@ -5,31 +5,32 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class Bill {
 
     private AtomicLong incrementable = new AtomicLong(0);
     private LocalDateTime fecha;
-    private Flux<Product> productos;
-    private Mono<Employee> nombreVendedor;
-    private Mono<Client> nombreCliente;
+    private ArrayList<Product> productos;
+    private Employee nombreVendedor;
+    private Client nombreCliente;
     private Double totalAPagar;
 
     public Bill() {
         //empty due to framework
     }
 
-    public Bill(Flux<Product> productos, Mono<Employee> nombreVendedor, Mono<Client> nombreCliente) {
+    public Bill(ArrayList<Product> productos, Employee nombreVendedor, Client nombreCliente) {
         this.fecha = LocalDateTime.now();
         this.incrementable.incrementAndGet();
         this.productos = productos;
         this.nombreVendedor = nombreVendedor;
         this.nombreCliente = nombreCliente;
-        this.calculatePrice();
+        //this.calculatePrice();
     }
 
-    public Bill(Flux<Product> productos, Mono<Employee> nombreVendedor, Mono<Client> nombreCliente, Double totalAPagar) {
+    public Bill(ArrayList<Product> productos, Employee nombreVendedor, Client nombreCliente, Double totalAPagar) {
         this.fecha = LocalDateTime.now();
         this.incrementable.incrementAndGet();
         this.productos = productos;
@@ -38,6 +39,7 @@ public class Bill {
         this.totalAPagar = totalAPagar;
     }
 
+    /*
     public void calculatePrice(){
         Double currTotal = 0.0;
         this.totalAPagar = this.productos.reduce(currTotal, (aDouble, product) -> {
@@ -45,6 +47,7 @@ public class Bill {
             return v;
         }).block();
     }
+     */
 
     public AtomicLong getIncrementable() {
         return incrementable;
@@ -62,27 +65,27 @@ public class Bill {
         this.fecha = fecha;
     }
 
-    public Flux<Product> getProductos() {
+    public ArrayList<Product> getProductos() {
         return productos;
     }
 
-    public void setProductos(Flux<Product> productos) {
+    public void setProductos(ArrayList<Product> productos) {
         this.productos = productos;
     }
 
-    public Mono<Employee> getNombreVendedor() {
+    public Employee getNombreVendedor() {
         return nombreVendedor;
     }
 
-    public void setNombreVendedor(Mono<Employee> nombreVendedor) {
+    public void setNombreVendedor(Employee nombreVendedor) {
         this.nombreVendedor = nombreVendedor;
     }
 
-    public Mono<Client> getNombreCliente() {
+    public Client getNombreCliente() {
         return nombreCliente;
     }
 
-    public void setNombreCliente(Mono<Client> nombreCliente) {
+    public void setNombreCliente(Client nombreCliente) {
         this.nombreCliente = nombreCliente;
     }
 

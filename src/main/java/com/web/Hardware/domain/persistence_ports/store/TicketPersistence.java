@@ -18,5 +18,7 @@ public interface TicketPersistence {
 
     Mono<Ticket> generateTicket(Ticket ticket);
 
+    Boolean notExistId(String id);
+
     void eraseTicket(String id);
 }

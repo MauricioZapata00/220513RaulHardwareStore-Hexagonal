@@ -12,6 +12,12 @@ public interface SupplierPersistence {
 
     Flux<Supplier> getSuppliersUsingName(String name);
 
+    Boolean notExistNIT(String NIT);
+
+    Boolean ExistNIT(String NIT);
+
+    Boolean notExistId(String id);
+
     Mono<Supplier> getSupplierUsingNIT(String NIT);
 
     Mono<Supplier> generateSupplier(Supplier supplier);

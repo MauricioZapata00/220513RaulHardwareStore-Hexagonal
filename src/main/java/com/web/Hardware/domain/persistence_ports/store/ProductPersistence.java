@@ -10,6 +10,8 @@ public interface ProductPersistence {
 
     Flux<Product> getAllProducts();
 
+    Boolean notExistId(String id);
+
     Flux<Product> getProductsUsingName(String name);
 
     Flux<Product> getProductsUsingPrice(Double price);

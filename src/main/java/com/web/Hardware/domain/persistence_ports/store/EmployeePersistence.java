@@ -12,6 +12,8 @@ public interface EmployeePersistence {
 
     Mono<Employee> getEmployeeUsingCedula(String cedula);
 
+    Boolean ExistCedula(String cedula);
+
     Boolean notExistCedula(String cedula);
 
     Flux<Employee> getEmployeesUsingName(String name);

@@ -6,6 +6,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Repository
 public interface BillPersistence {
@@ -14,9 +15,11 @@ public interface BillPersistence {
 
     Mono<Bill> generateBill(Bill bill);
 
-    Flux<Bill> getBillsUsingDate(LocalDateTime dateTime);
+    Optional<Flux<Bill>> getBillsUsingDate(LocalDateTime dateTime);
 
-    Flux<Bill> getBillsUsingClientName(String name);
+    Optional<Flux<Bill>> getBillsUsingClientName(String name);
+
+    Optional<Flux<Bill>> getBillsUsingIncrementable(Long incrementable);
 
     void eraseBill(String id);
 }

@@ -8,6 +8,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 public class BillService {
@@ -23,11 +24,11 @@ public class BillService {
         return this.billPersistence.getAllBills();
     }
 
-    public Flux<Bill> getBillsWithDate(LocalDateTime dateTime){
+    public Optional<Flux<Bill>> getBillsWithDate(LocalDateTime dateTime){
         return this.billPersistence.getBillsUsingDate(dateTime);
     }
 
-    public Flux<Bill> getBillsWithClientName(String name){
+    public Optional<Flux<Bill>> getBillsWithClientName(String name){
         return this.billPersistence.getBillsUsingClientName(name);
     }
 

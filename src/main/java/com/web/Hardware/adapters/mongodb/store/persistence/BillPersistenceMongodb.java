@@ -65,6 +65,9 @@ public class BillPersistenceMongodb implements BillPersistence {
     public void eraseBill(String id) {
         Mono<BillEntity> billEntityToDelete = this.billRepository
                 .findById(id);
-        this.billRepository.delete(billEntityToDelete.block());
+        billEntityToDelete.subscribe(billEntity -> {
+            this.billRepository.delete(billEntity);
+        });
+        //this.billRepository.delete(billEntityToDelete.block());
     }
 }

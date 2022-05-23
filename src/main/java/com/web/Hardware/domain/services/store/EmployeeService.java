@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.Optional;
+
 @Service
 public class EmployeeService {
 
@@ -41,12 +43,12 @@ public class EmployeeService {
         return this.employeePersistence.getAllEmployees();
     }
 
-    public Mono<Employee> getEmployeeWithCedula(String cedula){
+    public Optional<Mono<Employee>> getEmployeeWithCedula(String cedula){
         this.assertCedulaExist(cedula);
         return this.employeePersistence.getEmployeeUsingCedula(cedula);
     }
 
-    public Flux<Employee> getEmployeesWithName(String name){
+    public Optional<Flux<Employee>> getEmployeesWithName(String name){
         return this.employeePersistence.getEmployeesUsingName(name);
     }
 

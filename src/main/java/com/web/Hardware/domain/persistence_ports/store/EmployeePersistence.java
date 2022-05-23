@@ -5,18 +5,20 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.Optional;
+
 @Repository
 public interface EmployeePersistence {
 
     Flux<Employee> getAllEmployees();
 
-    Mono<Employee> getEmployeeUsingCedula(String cedula);
+    Optional<Mono<Employee>> getEmployeeUsingCedula(String cedula);
 
     Boolean ExistCedula(String cedula);
 
     Boolean notExistCedula(String cedula);
 
-    Flux<Employee> getEmployeesUsingName(String name);
+    Optional<Flux<Employee>> getEmployeesUsingName(String name);
 
     Mono<Employee> generateEmployee(Employee employee);
 

@@ -2,6 +2,7 @@ package com.web.Hardware.adapters.mongodb.store.persistence;
 
 import com.web.Hardware.adapters.mongodb.store.daos.ClientRepository;
 import com.web.Hardware.adapters.mongodb.store.entities.ClientEntity;
+import com.web.Hardware.domain.exceptions.ConflictException;
 import com.web.Hardware.domain.exceptions.NotFoundException;
 import com.web.Hardware.domain.models.store.Client;
 import com.web.Hardware.domain.persistence_ports.store.ClientPersistence;
@@ -53,7 +54,8 @@ public class ClientPersistenceMongodb implements ClientPersistence {
                         .getId()
                         .equals(id))
                         //.onErrorReturn(new ClientEntity(new Client("aaa","000","xyz")))
-                        .onErrorMap(e -> new NotFoundException("ID does not exist: " + id))
+                        .defaultIfEmpty(new ClientEntity(new Client("xcaxvz", "000", "rw485gf")))
+                        .onErrorMap(e -> new ConflictException("ID already exist: " + id))
                 .map(clientEntity -> clientEntity.getId()));
     }
 

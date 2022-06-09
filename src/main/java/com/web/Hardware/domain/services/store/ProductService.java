@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.Optional;
+
 @Service
 public class ProductService {
 
@@ -28,11 +30,11 @@ public class ProductService {
         return this.productPersistence.getAllProducts();
     }
 
-    public Flux<Product> getProductsWithName(String name){
+    public Optional<Flux<Product>> getProductsWithName(String name){
         return this.productPersistence.getProductsUsingName(name);
     }
 
-    public Flux<Product> getProductsWithPrice(Double price){
+    public Optional<Flux<Product>> getProductsWithPrice(Double price){
         return this.productPersistence.getProductsUsingPrice(price);
     }
 

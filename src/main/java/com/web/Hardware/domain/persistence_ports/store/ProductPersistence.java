@@ -5,6 +5,8 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.Optional;
+
 @Repository
 public interface ProductPersistence {
 
@@ -12,9 +14,9 @@ public interface ProductPersistence {
 
     Boolean notExistId(String id);
 
-    Flux<Product> getProductsUsingName(String name);
+    Optional<Flux<Product>> getProductsUsingName(String name);
 
-    Flux<Product> getProductsUsingPrice(Double price);
+    Optional<Flux<Product>> getProductsUsingPrice(Double price);
 
     Mono<Product> generateProduct(Product product);
 
